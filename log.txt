@@ -1,0 +1,41 @@
+#cucumber features/create_edit_categories.feature >> log.txt
+Using the default profile...
+Feature: Create categories
+  As a blog administrator
+  In order to share my thoughts with the world
+  I want to be able to add categories to my blog
+
+  Background:                            # features/create_edit_categories.feature:6
+    Given the blog is set up             # features/step_definitions/web_steps.rb:34
+    And I am logged into the admin panel # features/step_definitions/web_steps.rb:46
+
+  Scenario: Successfully create and edit categories       # features/create_edit_categories.feature:10
+    Given I am on the new categories page                 # features/step_definitions/web_steps.rb:68
+    When I fill in "category_name" with "Foobar"          # features/step_definitions/web_steps.rb:84
+    And I fill in "category_keywords" with "Lorem Ipsum"  # features/step_definitions/web_steps.rb:84
+    And I fill in "category_permalink" with "GG"          # features/step_definitions/web_steps.rb:84
+    And I fill in "category_description" with "desc"      # features/step_definitions/web_steps.rb:84
+    And I press "Save"                                    # features/step_definitions/web_steps.rb:76
+    Then I should see "Foobar"                            # features/step_definitions/web_steps.rb:129
+    Then I should see "Lorem Ipsum"                       # features/step_definitions/web_steps.rb:129
+    Then I should see "GG"                                # features/step_definitions/web_steps.rb:129
+    Then I should see "desc"                              # features/step_definitions/web_steps.rb:129
+    Then I follow "Foobar"                                # features/step_definitions/web_steps.rb:80
+    When I fill in "category_name" with "Foobar1"         # features/step_definitions/web_steps.rb:84
+    And I fill in "category_keywords" with "Lorem Ipsum1" # features/step_definitions/web_steps.rb:84
+    And I fill in "category_permalink" with "GG1"         # features/step_definitions/web_steps.rb:84
+    And I fill in "category_description" with "desc1"     # features/step_definitions/web_steps.rb:84
+    And I press "Save"                                    # features/step_definitions/web_steps.rb:76
+    Then I should see "Foobar1"                           # features/step_definitions/web_steps.rb:129
+    Then I should see "Lorem Ipsum1"                      # features/step_definitions/web_steps.rb:129
+    Then I should see "GG1"                               # features/step_definitions/web_steps.rb:129
+    Then I should see "desc1"                             # features/step_definitions/web_steps.rb:129
+
+1 scenario (1 passed)
+22 steps (22 passed)
+0m1.278s
+........
+#rspec spec/controllers/admin/categories_controller_spec.rb >> log.txt
+Finished in 0.82663 seconds
+8 examples, 0 failures
+Coverage report generated for RSpec to /home/ec2-user/environment/typo/coverage. 11120 / 14832 LOC (74.97%) covered.
